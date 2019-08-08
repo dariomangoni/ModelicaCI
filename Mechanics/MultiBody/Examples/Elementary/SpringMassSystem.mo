@@ -1,5 +1,6 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model SpringMassSystem "Mass attached with a spring to the world frame"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   parameter Boolean animation=true "= true, if animation shall be enabled";
   inner Modelica.Mechanics.MultiBody.World world annotation (Placement(
@@ -57,6 +58,7 @@ model SpringMassSystem "Mass attached with a spring to the world frame"
         extent={{-10,-10},{10,10}},
         rotation=270)));
 equation
+  Modelica.Math.Vectors.norm(body1.frame_a.R.w) + Modelica.Math.Vectors.norm(body2.frame_a.R.w) = outVal;
   connect(body1.frame_a, p1.frame_b)
     annotation (Line(
       points={{-20,-40},{-20,-35},{-20,-35},{-20,-30},{-20,-20},{-20,-20}},

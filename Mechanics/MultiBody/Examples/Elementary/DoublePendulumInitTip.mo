@@ -1,6 +1,7 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model DoublePendulumInitTip
   "Demonstrate how to initialize a double pendulum so that its tip starts at a predefined position"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   inner Modelica.Mechanics.MultiBody.World world annotation (Placement(
         transformation(extent={{-100,-10},{-80,10}})));
@@ -23,6 +24,7 @@ model DoublePendulumInitTip
     v_rel_a_2(fixed=true))
     annotation (Placement(transformation(extent={{-20,-50},{0,-30}})));
 equation
+  revolute2.phi = outVal;
   connect(damper.flange_b,revolute1. axis) annotation (Line(points={{-40,40},{-40,20},{-50,20},{-50,10}}));
   connect(revolute1.support,damper. flange_a) annotation (Line(points={{-56,10},{-56,20},{-60,20},{-60,40}}));
   connect(revolute1.frame_b,boxBody1. frame_a)

@@ -4,20 +4,21 @@ extends Modelica.Icons.ExamplesPackage;
 
   model PrismaticConstraint
     "Body attached by one spring and two prismatic joints or constrained to environment"
+    extends ModelicaCI.Interfaces.ExamplesOutput;
     extends Modelica.Icons.Example;
     parameter Boolean animation=true "True, if animation shall be enabled";
 
-Modelica.Mechanics.MultiBody.Joints.Prismatic jointPrismatic_x(stateSelect=StateSelect.always,
+    Modelica.Mechanics.MultiBody.Joints.Prismatic jointPrismatic_x(stateSelect=StateSelect.always,  
       n={1,0,0},
       s(fixed=true),
       v(fixed=true))
       annotation (Placement(transformation(extent={{80,-30},{60,-10}})));
-Modelica.Mechanics.MultiBody.Joints.Prismatic jointPrismatic_y(stateSelect=StateSelect.always,
+    Modelica.Mechanics.MultiBody.Joints.Prismatic jointPrismatic_y(stateSelect=StateSelect.always,
       n={0,1,0},
       s(fixed=true),
       v(fixed=true))
       annotation (Placement(transformation(extent={{40,-30},{20,-10}})));
-Modelica.Mechanics.MultiBody.Joints.Constraints.Prismatic constraint(x_locked=false, y_locked=
+    Modelica.Mechanics.MultiBody.Joints.Constraints.Prismatic constraint(x_locked=false, y_locked=
           false)
       annotation (Placement(transformation(extent={{60,10},{40,30}})));
     Modelica.Mechanics.MultiBody.Sensors.RelativeSensor sensorConstraintRelative(
@@ -103,6 +104,7 @@ Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
       angle_1(fixed=false))
       annotation (Placement(transformation(extent={{60,70},{40,90}})));
   equation
+    sensorConstraintRelative.r_rel[1] = outVal;
     connect(fixedTranslation.frame_a, world.frame_b)
       annotation (Line(
         points={{-70,-60},{-70,-90},{-80,-90}},
@@ -184,6 +186,7 @@ Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
 
   model RevoluteConstraint
     "Body attached by one spring and revolute joint or constrained to environment"
+    extends ModelicaCI.Interfaces.ExamplesOutput;
     extends Modelica.Icons.Example;
     parameter Boolean animation=true "= true, if animation shall be enabled";
     Modelica.Mechanics.MultiBody.Joints.Revolute joint(stateSelect=StateSelect.always,
@@ -191,7 +194,7 @@ Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
       phi(fixed=true),
       w(fixed=true))
       annotation (Placement(transformation(extent={{60,-30},{40,-10}})));
-Modelica.Mechanics.MultiBody.Joints.Constraints.Revolute constraint(n=joint.n)
+    Modelica.Mechanics.MultiBody.Joints.Constraints.Revolute constraint(n=joint.n)
       annotation (Placement(transformation(extent={{60,10},{40,30}})));
     Modelica.Mechanics.MultiBody.Sensors.RelativeSensor sensorConstraintRelative(
       resolveInFrame=Modelica.Mechanics.MultiBody.Types.ResolveInFrameAB.frame_a,
@@ -261,15 +264,16 @@ Modelica.Mechanics.MultiBody.Joints.Constraints.Revolute constraint(n=joint.n)
     Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedTranslation(animation=
          false, r={0.8,0,0.3})
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-  rotation=90,
+      rotation=90,
           origin={-70,-50})));
-Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
+    Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
       use_angle=true,
       use_angle_d=true,
       angle_2(start=0, fixed=true),
       angle_d_2(start=0, fixed=true))
       annotation (Placement(transformation(extent={{60,70},{40,90}})));
   equation
+    sensorConstraintRelative.r_rel[1] = outVal;
     connect(fixedTranslation.frame_a, world.frame_b)
       annotation (Line(
         points={{-70,-60},{-70,-90},{-80,-90}},
@@ -347,14 +351,15 @@ Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
 
   model SphericalConstraint
     "Body attached by one spring and spherical joint or constrained to environment"
+    extends ModelicaCI.Interfaces.ExamplesOutput;
     extends Modelica.Icons.Example;
     parameter Boolean animation=true "= true, if animation shall be enabled";
-Modelica.Mechanics.MultiBody.Joints.Spherical joint(
+    Modelica.Mechanics.MultiBody.Joints.Spherical joint(
       angles_fixed=true,
       w_rel_a_fixed=true,
       enforceStates=true)
       annotation (Placement(transformation(extent={{60,-30},{40,-10}})));
-Modelica.Mechanics.MultiBody.Joints.Constraints.Spherical constraint
+    Modelica.Mechanics.MultiBody.Joints.Constraints.Spherical constraint
       annotation (Placement(transformation(extent={{60,10},{40,30}})));
     Modelica.Mechanics.MultiBody.Sensors.RelativeSensor sensorConstraintRelative(
       resolveInFrame=Modelica.Mechanics.MultiBody.Types.ResolveInFrameAB.frame_a,
@@ -424,9 +429,9 @@ Modelica.Mechanics.MultiBody.Joints.Constraints.Spherical constraint
     Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedTranslation(animation=
          false, r={0.8,0,0.3})
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-  rotation=90,
+      rotation=90,
           origin={-70,-50})));
-Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
+    Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
       use_angle=true,
       use_angle_d=true,
       angle_1(fixed=true),
@@ -437,6 +442,7 @@ Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
       angle_d_3(fixed=true))
       annotation (Placement(transformation(extent={{60,70},{40,90}})));
   equation
+    sensorConstraintRelative.r_rel[1] = outVal;
     connect(fixedTranslation.frame_a, world.frame_b)
       annotation (Line(
         points={{-70,-60},{-70,-90},{-80,-90}},
@@ -514,9 +520,10 @@ Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
 
   model UniversalConstraint
     "Body attached by one spring and universal joint or constrained to environment"
+    extends ModelicaCI.Interfaces.ExamplesOutput;
     extends Modelica.Icons.Example;
     parameter Boolean animation=true "= true, if animation shall be enabled";
-Modelica.Mechanics.MultiBody.Joints.Universal joint(
+    Modelica.Mechanics.MultiBody.Joints.Universal joint(
       n_a={0,0,1},
       n_b={1,0,0},
       stateSelect=StateSelect.always,
@@ -525,7 +532,7 @@ Modelica.Mechanics.MultiBody.Joints.Universal joint(
       w_a(fixed=true),
       w_b(fixed=true))
       annotation (Placement(transformation(extent={{60,-30},{40,-10}})));
-Modelica.Mechanics.MultiBody.Joints.Constraints.Universal constraint(n_a=joint.n_a, n_b=joint.n_b)
+    Modelica.Mechanics.MultiBody.Joints.Constraints.Universal constraint(n_a=joint.n_a, n_b=joint.n_b)
       annotation (Placement(transformation(extent={{60,10},{40,30}})));
     Modelica.Mechanics.MultiBody.Sensors.RelativeSensor sensorConstraintRelative(
       resolveInFrame=Modelica.Mechanics.MultiBody.Types.ResolveInFrameAB.frame_a,
@@ -596,13 +603,13 @@ Modelica.Mechanics.MultiBody.Joints.Constraints.Universal constraint(n_a=joint.n
     Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedTranslation(animation=
          false, r={0.8,0,0.3})
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-  rotation=90,
+      rotation=90,
           origin={-70,-50})));
-Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedTranslationOfJoint(r={0.1,0.15,0.2})
+    Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedTranslationOfJoint(r={0.1,0.15,0.2})
       annotation (Placement(transformation(extent={{-10,-30},{-30,-10}})));
-Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedTranslationOfConstraint(r=fixedTranslationOfJoint.r)
+    Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedTranslationOfConstraint(r=fixedTranslationOfJoint.r)
       annotation (Placement(transformation(extent={{-10,10},{-30,30}})));
-Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
+    Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
       use_angle=true,
       use_angle_d=true,
       angle_1(fixed=true),
@@ -612,6 +619,7 @@ Modelica.Mechanics.MultiBody.Joints.FreeMotionScalarInit freeMotionScalarInit(
       sequence_start={1,2,3})
       annotation (Placement(transformation(extent={{60,70},{40,90}})));
   equation
+    sensorConstraintRelative.r_rel[1] = outVal;
     connect(fixedTranslation.frame_a, world.frame_b)
       annotation (Line(
         points={{-70,-60},{-70,-90},{-80,-90}},

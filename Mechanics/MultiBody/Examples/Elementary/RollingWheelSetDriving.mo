@@ -1,6 +1,7 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model RollingWheelSetDriving
   "Rolling wheel set that is driven by torques driving the wheels"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
    extends Modelica.Icons.Example;
 
   inner Modelica.Mechanics.MultiBody.World world(
@@ -56,6 +57,7 @@ model RollingWheelSetDriving
             {10,10}},
         origin={70,14})));
 equation
+  Modelica.Math.Vectors.norm(wheelSet.frame1.R.w) = outVal;
   connect(fixedTranslation.frame_a, wheelSet.frameMiddle) annotation (Line(
       points={{20,-10},{10,-10},{10,-4},{-10,-4},{-10,-2}},
       color={95,95,95},

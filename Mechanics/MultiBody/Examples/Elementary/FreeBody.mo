@@ -1,5 +1,6 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model FreeBody "Free flying body attached by two springs to environment"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   parameter Boolean animation=true "= true, if animation shall be enabled";
   inner Modelica.Mechanics.MultiBody.World world annotation (Placement(
@@ -39,6 +40,7 @@ model FreeBody "Free flying body attached by two springs to environment"
         extent={{-10,-10},{10,10}},
         rotation=270)));
 equation
+  Modelica.Math.Vectors.norm(body.frame_a.R.w) = outVal;
   connect(bar2.frame_a, world.frame_b)
     annotation (Line(
       points={{0,30},{-40,30}},

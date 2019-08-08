@@ -1,5 +1,6 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model SpringWithMass "Point mass hanging on a spring"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   inner Modelica.Mechanics.MultiBody.World world(animateGravity=false)
     annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
@@ -23,6 +24,7 @@ model SpringWithMass "Point mass hanging on a spring"
         extent={{-10,-10},{10,10}},
         rotation=270)));
 equation
+  Modelica.Math.Vectors.norm(body.frame_a.R.w) = outVal;
   connect(world.frame_b, spring.frame_a)
     annotation (Line(
       points={{-20,50},{10,50},{10,40}},

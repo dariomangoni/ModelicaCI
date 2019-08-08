@@ -1,5 +1,6 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model ThreeSprings "3-dim. springs in series and parallel connection"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   parameter Boolean animation=true "= true, if animation shall be enabled";
   inner Modelica.Mechanics.MultiBody.World world(animateWorld=animation)
@@ -57,6 +58,7 @@ model ThreeSprings "3-dim. springs in series and parallel connection"
     fixedRotationAtFrame_b=true)
                          annotation (Placement(transformation(extent={{-10,-30},{10,-10}})));
 equation
+  Modelica.Math.Vectors.norm(body1.frame_a.R.w) = outVal;
   connect(world.frame_b, bar1.frame_a)
     annotation (Line(
       points={{-40,30},{-10,30}},

@@ -1,5 +1,6 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model HeatLosses "Demonstrate the modeling of heat losses"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
    extends Modelica.Icons.Example;
   inner Modelica.Mechanics.MultiBody.World                              world annotation (Placement(
         transformation(extent={{-100,50},{-80,70}})));
@@ -110,7 +111,7 @@ model HeatLosses "Demonstrate the modeling of heat losses"
     "Ambient temperature"
     annotation (Placement(transformation(extent={{80,-70},{60,-50}})));
 equation
-
+  Modelica.Math.Vectors.norm(body1.frame_a.R.w) + Modelica.Math.Vectors.norm(body2.frame_a.R.w) + Modelica.Math.Vectors.norm(body3.frame_a.R.w) = outVal;
   connect(world.frame_b,bar1. frame_a)
     annotation (Line(
       points={{-80,60},{-70,60}},

@@ -1,6 +1,7 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Loops;
 model Fourbar_analytic
   "One kinematic loop with four bars (with JointSSP joint; analytic solution of non-linear algebraic loop)"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
 
   output SI.Angle j1_phi "angle of revolute joint j1";
@@ -43,6 +44,7 @@ model Fourbar_analytic
         extent={{10,-10},{-10,10}},
         rotation=90)));
 equation
+  j1.phi = outVal;
   j1_phi = j1.phi;
   j2_s = jointSSP.prismatic.distance;
   j1_w = j1.w;

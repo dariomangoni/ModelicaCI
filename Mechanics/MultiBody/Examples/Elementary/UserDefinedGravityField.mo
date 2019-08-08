@@ -1,12 +1,13 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model UserDefinedGravityField
   "Demonstrate the modeling of a user-defined gravity field"
-   extends Modelica.Icons.Example;
-   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg geodeticLatitude = 0
+  extends ModelicaCI.Interfaces.ExamplesOutput;
+  extends Modelica.Icons.Example;
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg geodeticLatitude = 0
     "Geodetic latitude";
-   parameter Modelica.SIunits.Position height = 20
+  parameter Modelica.SIunits.Position height = 20
     "Height of pendulum attachment point over WGS84 earth ellipsoid";
-   Modelica.SIunits.Acceleration gravity[3]=body.g_0
+  Modelica.SIunits.Acceleration gravity[3]=body.g_0
     "Gravity acceleration at center of mass of body";
   inner Modelica.Mechanics.MultiBody.World world(
     gravityType=Modelica.Mechanics.MultiBody.Types.GravityTypes.NoGravity,
@@ -15,22 +16,23 @@ model UserDefinedGravityField
          phi=geodeticLatitude),
     axisLength=10,
     nominalLength=10) annotation (Placement(transformation(extent={{-80,-50},{-60,-30}})));
-Modelica.Mechanics.MultiBody.Joints.Revolute rev(n={0,0,1},useAxisFlange=true,
+  Modelica.Mechanics.MultiBody.Joints.Revolute rev(n={0,0,1},useAxisFlange=true,
     phi(fixed=true),
     w(fixed=true)) annotation (Placement(transformation(extent={{-20,-10},{0,10}})));
-Modelica.Mechanics.Rotational.Components.Damper damper(d=0.1)
+  Modelica.Mechanics.Rotational.Components.Damper damper(d=0.1)
     annotation (Placement(transformation(extent={{-20,30},{0,50}})));
-Modelica.Mechanics.MultiBody.Parts.Body body(r_CM={10,0,0},
+  Modelica.Mechanics.MultiBody.Parts.Body body(r_CM={10,0,0},
     m=1000.0,
     sphereDiameter=1)
     annotation (Placement(transformation(extent={{20,-10},{40,10}})));
-Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedTranslation(r={0,height,0}, width=0.3)
+  Modelica.Mechanics.MultiBody.Parts.FixedTranslation fixedTranslation(r={0,height,0}, width=0.3)
                                                      annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={-40,-20})));
 equation
+  Modelica.Math.Vectors.norm(body.frame_a.R.w) = outVal;
   connect(damper.flange_b,rev. axis) annotation (Line(points={{0,40},{0,20},{-10,20},{-10,10}}));
   connect(rev.support,damper. flange_a) annotation (Line(points={{-16,10},{-16,20},{-20,20},{-20,40}}));
   connect(body.frame_a,rev. frame_b) annotation (Line(

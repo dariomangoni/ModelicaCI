@@ -1,6 +1,7 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model DoublePendulum
   "Simple double pendulum with two revolute joints and two bodies"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
 
   extends Modelica.Icons.Example;
   inner Modelica.Mechanics.MultiBody.World world annotation (Placement(
@@ -17,7 +18,7 @@ model DoublePendulum
   Modelica.Mechanics.MultiBody.Parts.BodyBox boxBody2(r={0.5,0,0}, width=0.06)
     annotation (Placement(transformation(extent={{60,-10},{80,10}})));
 equation
-
+  revolute2.phi = outVal;
   connect(damper.flange_b, revolute1.axis) annotation (Line(points={{-40,40},{-40,20},{-50,20},{-50,10}}));
   connect(revolute1.support, damper.flange_a) annotation (Line(points={{-56,10},{-56,20},{-60,20},{-60,40}}));
   connect(revolute1.frame_b, boxBody1.frame_a)

@@ -1,9 +1,10 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Loops;
 model Engine1b_analytic
   "Model of one cylinder engine with gas force and analytic loop handling"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   extends Modelica.Mechanics.MultiBody.Examples.Loops.Utilities.Engine1bBase(Inertia(w(start=0)));
-Modelica.Mechanics.MultiBody.Joints.Assemblies.JointRRP jointRRP(
+  Modelica.Mechanics.MultiBody.Joints.Assemblies.JointRRP jointRRP(
     n_a={1,0,0},
     n_b={0,-1,0},
     animation=false,
@@ -13,6 +14,7 @@ Modelica.Mechanics.MultiBody.Joints.Assemblies.JointRRP jointRRP(
         extent={{-20,20},{20,-20}},
         rotation=90)));
 equation
+  Bearing.axis.phi = outVal;
   connect(Mid.frame_b, jointRRP.frame_a) annotation (Line(
       points={{30,-54},{30,-54},{30,-40},{20,-40},{20,0}},
       color={95,95,95},

@@ -1,6 +1,7 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Loops;
 model Fourbar2
   "One kinematic loop with four bars (with UniversalSpherical joint; 1 non-linear equation)"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
 
   output SI.Angle j1_phi "angle of revolute joint j1";
@@ -44,6 +45,7 @@ model Fourbar2
     annotation (Placement(transformation(
         extent={{20,60},{40,80}})));
 equation
+  j1.phi = outVal;
   j1_phi = j1.phi;
   j2_s = j2.s;
   j1_w = j1.w;

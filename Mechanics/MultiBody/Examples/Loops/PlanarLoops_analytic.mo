@@ -1,6 +1,7 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Loops;
 model PlanarLoops_analytic
   "Mechanism with three planar kinematic loops and one degree-of-freedom with analytic loop handling (with JointRRR joints)"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   parameter SI.Length rh[3]={0.5,0,0}
     "Position vector from 'lower left' revolute to 'lower right' revolute joint for all the 3 loops";
@@ -93,6 +94,7 @@ Modelica.Mechanics.MultiBody.Parts.Mounting1D mounting1D
         rotation=90,
         origin={-90,-50})));
 equation
+  rev.phi = outVal;
   connect(world.frame_b, rev.frame_a) annotation (Line(
       points={{-100,-70},{-60,-70},{-60,-20}},
       color={95,95,95},

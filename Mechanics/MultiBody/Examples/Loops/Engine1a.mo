@@ -1,5 +1,6 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Loops;
 model Engine1a "Model of one cylinder engine"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   Modelica.Mechanics.MultiBody.Parts.BodyCylinder Piston(diameter=0.1, r={0,-0.1,
         0}) annotation (Placement(transformation(
@@ -67,6 +68,7 @@ model Engine1a "Model of one cylinder engine"
   Modelica.Mechanics.MultiBody.Parts.FixedTranslation cylPosition(animation=
         false, r={0.15,0.45,0}) annotation (Placement(transformation(extent={{-60,70},{-40,90}})));
 equation
+  Bearing.axis.phi = outVal;
   connect(world.frame_b, Bearing.frame_a) annotation (Line(
       points={{-80,-90},{-60,-90}},
       color={95,95,95},

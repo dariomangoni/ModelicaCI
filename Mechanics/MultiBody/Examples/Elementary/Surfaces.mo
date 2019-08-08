@@ -1,6 +1,7 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model Surfaces
   "Demonstrate the visualization of a sine surface, as well as a torus and a wheel constructed from a surface"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   parameter Real x_min=-1 "Minimum value of x";
   parameter Real x_max=+1 "Maximum value of x";
@@ -60,6 +61,7 @@ model Surfaces
       animation=false, r={0,-2.2,0})
     annotation (Placement(transformation(extent={{-20,-30},{0,-10}})));
 equation
+  Modelica.Math.Vectors.norm(wheel.frame_a.R.w) = outVal;
   connect(world.frame_b, prismatic.frame_a) annotation (Line(
       points={{-80,0},{-60,0},{-60,20},{-40,20}},
       color={95,95,95},

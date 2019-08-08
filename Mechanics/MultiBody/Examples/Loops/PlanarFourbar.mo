@@ -1,5 +1,6 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Loops;
 model PlanarFourbar "Planar four bars mechanism with one kinematic loop (with RevolutePlanarLoopConstraint joint)"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
 
 Modelica.Mechanics.MultiBody.Joints.Revolute revolute1(
@@ -45,6 +46,7 @@ Modelica.Mechanics.MultiBody.Sensors.RelativeSensor sensorJoint4(
     get_angles=true,
     sequence={1,2,3}) annotation (Placement(transformation(extent={{30,84},{50,64}})));
 equation
+  revolute1.phi = outVal;  
   connect(revolute1.frame_b, body1.frame_a) annotation (Line(
       points={{-30,-30},{-10,-30}},
       color={95,95,95},

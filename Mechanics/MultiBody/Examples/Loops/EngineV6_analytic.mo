@@ -1,6 +1,7 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Loops;
 model EngineV6_analytic
   "V6 engine with 6 cylinders, 6 planar loops, 1 degree-of-freedom and analytic handling of kinematic loops"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
 
   extends Modelica.Icons.Example;
   parameter Boolean animation=true "= true, if animation shall be enabled";
@@ -32,14 +33,14 @@ model EngineV6_analytic
         200,
     useSupport=false)
              annotation (Placement(transformation(extent={{90,10},{70,30}})));
-Modelica.Mechanics.Rotational.Sensors.TorqueSensor torqueSensor
+  Modelica.Mechanics.Rotational.Sensors.TorqueSensor torqueSensor
     annotation (Placement(transformation(extent={{10,10},{30,30}})));
   Modelica.Blocks.Continuous.CriticalDamping filter(
     n=2,
     initType=Modelica.Blocks.Types.Init.SteadyState,
     f=5) annotation (Placement(transformation(extent={{30,-20},{50,0}})));
 equation
-
+  load.flange_b.phi = outVal;
   connect(world.frame_b, engine.frame_a)
     annotation (Line(
       points={{-60,-10},{-20,-10},{-20,-0.2}},
@@ -56,7 +57,8 @@ equation
   annotation (
     Documentation(info="<html>
 <p>
-This is a similar model as the example \"EngineV6\". However, the cylinders
+This is a similar model as the example \"EngineV6\"
+  extends ModelicaCI.Interfaces.ExamplesOutput;. However, the cylinders
 have been built up with component Modelica.Mechanics.MultiBody.Joints.Assemblies.JointRRR that
 solves the non-linear system of equations in an aggregation of 3 revolution
 joints <strong>analytically</strong> and only one body is used that holds the total

@@ -1,5 +1,6 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model RollingWheelSetPulling "Rolling wheel set that is pulled by a force"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
    extends Modelica.Icons.Example;
 
   Modelica.Mechanics.MultiBody.Forces.WorldForce force(animation=false)
@@ -49,6 +50,7 @@ model RollingWheelSetPulling "Rolling wheel set that is pulled by a force"
             {10,10}},
         origin={70,30})));
 equation
+  Modelica.Math.Vectors.norm(wheelSet.frame1.R.w) = outVal;
   connect(combiTimeTable.y, force.force) annotation (Line(
       points={{1,40},{18,40}},                      color={0,0,127}));
   connect(fixedTranslation.frame_a, wheelSet.frameMiddle) annotation (Line(

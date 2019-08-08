@@ -1,5 +1,6 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model ForceAndTorque "Demonstrate usage of ForceAndTorque element"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   inner Modelica.Mechanics.MultiBody.World world(animateGravity=false) annotation (Placement(transformation(
           extent={{-90,30},{-70,50}})));
@@ -33,6 +34,7 @@ model ForceAndTorque "Demonstrate usage of ForceAndTorque element"
         extent={{10,-10},{-10,10}},
         rotation=270)));
 equation
+  revolute2.phi = outVal;
   connect(revolute2.frame_b, body.frame_a) annotation (Line(
       points={{-20,30},{-20,40},{0,40}},
       color={95,95,95},

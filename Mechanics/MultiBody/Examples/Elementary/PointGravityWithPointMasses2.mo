@@ -2,6 +2,7 @@ within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model PointGravityWithPointMasses2
   "Rigidly connected point masses in a point gravity field"
   extends Modelica.Icons.Example;
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   model PointMass = Modelica.Mechanics.MultiBody.Parts.PointMass (
     m=1, sphereColor={255,0,0}) "Point mass used at all places of this example"
     annotation (
@@ -53,7 +54,7 @@ Point mass used at all places in this example (has a mass  of 1 kg and a blue co
     gravityType=Modelica.Mechanics.MultiBody.Types.GravityTypes.PointGravity,
     mue=5)
     annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
-Modelica.Mechanics.MultiBody.Joints.FreeMotion freeMotion annotation (Placement(transformation(extent={{
+  Modelica.Mechanics.MultiBody.Joints.FreeMotion freeMotion annotation (Placement(transformation(extent={{
             -40,60},{-20,80}})));
   SystemWithStandardBodies referenceSystem annotation (Placement(transformation(
           extent={{60,-60},{80,-40}})));
@@ -186,6 +187,7 @@ point masses are replaced by Bodies with zero inertia.
   end SystemWithStandardBodies;
 
 equation
+  Modelica.Math.Vectors.norm(pointMass1.frame_a.R.w) = outVal;
   connect(fixedTranslation1.frame_a, fixedTranslation.frame_a)
     annotation(Line(
       points={{0,0},{20,0}},

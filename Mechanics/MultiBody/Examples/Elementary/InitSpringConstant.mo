@@ -1,6 +1,7 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model InitSpringConstant
   "Determine spring constant such that system is in steady state at given position"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
 
   extends Modelica.Icons.Example;
   inner Modelica.Mechanics.MultiBody.World world(gravityType=Modelica.Mechanics.MultiBody.Types.GravityTypes.UniformGravity)
@@ -30,6 +31,7 @@ model InitSpringConstant
         rotation=270)));
 
 equation
+  Modelica.Math.Vectors.norm(body.frame_a.R.w) = outVal;
   connect(world.frame_b, rev.frame_a) annotation (Line(
       points={{-60,0},{-40,0}},
       color={95,95,95},

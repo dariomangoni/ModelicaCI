@@ -1,7 +1,7 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Loops;
 model EngineV6
   "V6 engine with 6 cylinders, 6 planar loops and 1 degree-of-freedom"
-
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   parameter Boolean animation=true "= true, if animation shall be enabled";
   output Modelica.SIunits.Conversions.NonSIunits.AngularVelocity_rpm
@@ -62,14 +62,14 @@ model EngineV6
         200,
     useSupport=false)
              annotation (Placement(transformation(extent={{20,-30},{0,-10}})));
-Modelica.Mechanics.Rotational.Sensors.TorqueSensor torqueSensor
+  Modelica.Mechanics.Rotational.Sensors.TorqueSensor torqueSensor
     annotation (Placement(transformation(extent={{-62,-30},{-42,-10}})));
   Modelica.Blocks.Continuous.CriticalDamping filter(
     n=2,
     initType=Modelica.Blocks.Types.Init.SteadyState,
     f=5) annotation (Placement(transformation(extent={{-50,-60},{-30,-40}})));
 equation
-
+  load.flange_b.phi = outVal;
   connect(bearing.frame_b, cylinder1.crank_a)
     annotation (Line(
       points={{-60,20},{-50,20}},

@@ -1,6 +1,7 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model RollingWheel
   "Single wheel rolling on ground starting from an initial speed"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
    extends Modelica.Icons.Example;
 
   Modelica.Mechanics.MultiBody.Parts.RollingWheel wheel1(
@@ -20,6 +21,9 @@ model RollingWheel
     groundLength_u=4,
     groundColor={130,200,130})
     annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
+
+equation
+  Modelica.Math.Vectors.norm(wheel1.frame_a.R.w) = outVal;
   annotation (
     experiment(StopTime=4),
     Documentation(info="<html>

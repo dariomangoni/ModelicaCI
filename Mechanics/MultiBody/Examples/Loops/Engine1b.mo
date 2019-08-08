@@ -1,9 +1,10 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Loops;
 model Engine1b
   "Model of one cylinder engine with gas force and preparation for assembly joint JointRRP"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   extends Modelica.Mechanics.MultiBody.Examples.Loops.Utilities.Engine1bBase(Inertia(w(start=0)));
-Modelica.Mechanics.MultiBody.Joints.RevolutePlanarLoopConstraint B2(
+  Modelica.Mechanics.MultiBody.Joints.RevolutePlanarLoopConstraint B2(
     n={1,0,0},
     cylinderLength=0.02,
     cylinderDiameter=0.05) annotation (Placement(transformation(extent={{20,20},{40,0}})));
@@ -18,17 +19,18 @@ Modelica.Mechanics.MultiBody.Joints.RevolutePlanarLoopConstraint B2(
         origin={30,70},
         extent={{-10,-10},{10,10}},
         rotation=270)));
-Modelica.Mechanics.MultiBody.Parts.FixedTranslation Rod1(r={0,0.2,0}, animation=false) annotation (
+  Modelica.Mechanics.MultiBody.Parts.FixedTranslation Rod1(r={0,0.2,0}, animation=false) annotation (
       Placement(transformation(
         origin={50,-10},
         extent={{-10,-10},{10,10}},
         rotation=90)));
-Modelica.Mechanics.MultiBody.Parts.FixedTranslation Rod3(r={0,-0.1,0}, animation=false) annotation (
+  Modelica.Mechanics.MultiBody.Parts.FixedTranslation Rod3(r={0,-0.1,0}, animation=false) annotation (
       Placement(transformation(
         origin={30,40},
         extent={{10,-10},{-10,10}},
         rotation=90)));
 equation
+  Bearing.axis.phi = outVal;
   connect(B1.frame_b, Rod1.frame_a) annotation (Line(
       points={{40,-30},{50,-30},{50,-20}},
       color={95,95,95},

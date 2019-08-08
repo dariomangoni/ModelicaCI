@@ -1,6 +1,7 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model LineForceWithTwoMasses
   "Demonstrate line force with two point masses using a JointUPS and alternatively a LineForceWithTwoMasses component"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   parameter Modelica.SIunits.Mass m=1 "Mass of point masses";
   SI.Force rod_f_diff[3]=rod1.frame_b.f - rod3.frame_b.f
@@ -80,6 +81,7 @@ model LineForceWithTwoMasses
     m_a=m,
     m_b=m) annotation (Placement(transformation(extent={{-10,-90},{10,-70}})));
 equation
+  revolute2.phi = outVal;
   connect(jointUPS.bearing, damper1.flange_a)
     annotation (Line(points={{-4.8,28},{-4.8,20},{-10,20},{-10,10}},
                                                                  color={0,127,0}));

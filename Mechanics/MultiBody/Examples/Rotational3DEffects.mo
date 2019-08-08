@@ -5,6 +5,7 @@ package Rotational3DEffects
 
   model GyroscopicEffects
     "Demonstrates that a cylindrical body can be replaced by Rotor1D model"
+    extends ModelicaCI.Interfaces.ExamplesOutput;
     extends Modelica.Icons.Example;
 
     inner Modelica.Mechanics.MultiBody.World world(driveTrainMechanics3D=true) annotation (Placement(
@@ -53,6 +54,7 @@ package Rotational3DEffects
       phi(fixed=true),
       w(fixed=true, start=10)) annotation (Placement(transformation(extent={{20,-40},{40,-60}})));
   equation
+    revolute.phi = outVal;
     connect(world.frame_b, spherical1.frame_a) annotation (Line(
         points={{-80,30},{-70,30}},
         color={95,95,95},
@@ -143,6 +145,7 @@ is much faster.
   end GyroscopicEffects;
 
   model ActuatedDrive "Demonstrates usage of models Rotor1D and Mounting1D"
+    extends ModelicaCI.Interfaces.ExamplesOutput;
     extends Modelica.Icons.Example;
     Modelica.Mechanics.MultiBody.Parts.BodyShape bodyCylinder(
       r={0.5,0,0},
@@ -174,6 +177,7 @@ is much faster.
           transformation(extent={{0,-40},{20,-20}})));
     Modelica.Mechanics.MultiBody.Parts.Mounting1D mounting1D annotation (Placement(transformation(extent={{-10,-70},{10,-50}})));
   equation
+    revolute.phi = outVal;
     connect(world.frame_b, revolute.frame_a) annotation (Line(
         points={{-40,70},{-10,70}},
         color={95,95,95},
@@ -219,6 +223,7 @@ Note, the solution with Rotor1D is much more efficient.
 
   model MovingActuatedDrive
     "Demonstrates usage of model Rotor1D mounted on a moving body"
+    extends ModelicaCI.Interfaces.ExamplesOutput;
     extends Modelica.Icons.Example;
     Modelica.Mechanics.MultiBody.Parts.BodyShape bodyCylinder(
       r={0.5,0,0},
@@ -265,6 +270,7 @@ Note, the solution with Rotor1D is much more efficient.
                                  annotation (Placement(transformation(extent={{-60,-60},{-40,-40}})));
     Modelica.Mechanics.MultiBody.Parts.Fixed fixed annotation (Placement(transformation(extent={{-90,-80},{-70,-60}})));
   equation
+    revolute.phi = outVal;
     connect(revolute.frame_b, bodyCylinder.frame_a) annotation (Line(
         points={{36,20},{50,20}},
         color={95,95,95},
@@ -344,6 +350,7 @@ axes of the revolute joints.
   end MovingActuatedDrive;
 
   model GearConstraint "Demonstrate usage of GearConstraint model"
+    extends ModelicaCI.Interfaces.ExamplesOutput;
     extends Modelica.Icons.Example;
     Modelica.Mechanics.MultiBody.Joints.GearConstraint gearConstraint(
       ratio=10,
@@ -376,6 +383,7 @@ axes of the revolute joints.
           transformation(extent={{-10,-40},{10,-20}})));
     Modelica.Mechanics.MultiBody.Parts.Mounting1D mounting1D annotation (Placement(transformation(extent={{-30,-70},{-10,-50}})));
   equation
+    inertia2.flange_b.phi = outVal;
     connect(world.frame_b, gearConstraint.bearing) annotation (Line(
         points={{-30,20},{60,20},{60,40}},
         color={95,95,95},
@@ -427,6 +435,7 @@ a one-dimensional model that is mounted with an
 
   model BevelGear1D
     "Demonstrates the usage of a BevelGear1D model and how to calculate the power of such an element"
+    extends ModelicaCI.Interfaces.ExamplesOutput;
     import Modelica.Mechanics.MultiBody.Frames;
     extends Modelica.Icons.Example;
     parameter Modelica.Mechanics.MultiBody.Types.Axis na={1,0,0}
@@ -500,6 +509,7 @@ a one-dimensional model that is mounted with an
     Modelica.SIunits.AngularVelocity ws[3] = sensor1.w;
     Modelica.SIunits.Power bevelGearPower;
   equation
+    inertia2.flange_b.phi = outVal;
     bevelGearPower = (ws + der(bevelGear.flange_a.phi)*na)*bevelGear.flange_a.tau*na +
                      (ws + der(bevelGear.flange_b.phi)*nb)*bevelGear.flange_b.tau*nb +
                      ws*sensor2.torque;

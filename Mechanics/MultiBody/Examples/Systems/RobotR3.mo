@@ -5,6 +5,7 @@ package RobotR3
 
   model oneAxis
     "Model of one axis of robot (controller, motor, gearbox) with simple load"
+    extends ModelicaCI.Interfaces.ExamplesOutput;
 
     extends Modelica.Icons.Example;
     parameter SI.Mass mLoad(min=0)=15 "Mass of load";
@@ -44,6 +45,7 @@ package RobotR3
     Modelica.Mechanics.MultiBody.Examples.Systems.RobotR3.Components.ControlBus controlBus annotation (Placement(transformation(
             extent={{-32,10},{8,50}})));
   equation
+    load.flange_b.phi = outVal;
     connect(axis.flange, load.flange_a)
       annotation (Line(
         points={{40,10},{60,10}},
@@ -75,6 +77,7 @@ load inertia.
 
   model fullRobot
     "Six degree of freedom robot with path planning, controllers, motors, brakes, gears and mechanics"
+    extends ModelicaCI.Interfaces.ExamplesOutput;
     extends Modelica.Icons.Example;
 
     parameter SI.Mass mLoad(min=0) = 15 "Mass of load";
@@ -249,6 +252,7 @@ load inertia.
           extent={{-20,-20},{20,20}},
           rotation=90)));
   equation
+    axis1.flange.phi = outVal;
     connect(axis2.flange, mechanics.axis2) annotation (Line(points={{0,-30},{20,-30},{20,-13.5},{40,-13.5}}));
     connect(axis1.flange, mechanics.axis1) annotation (Line(points={{0,-50},{30,-50},{30,-22.5},{40,-22.5}}));
     connect(axis3.flange, mechanics.axis3) annotation (Line(points={{0,-10},{10,-10},{10,-4.5},{40,-4.5}}));
@@ -339,7 +343,7 @@ For current settings, the termination condition should indeed be fulfilled right
 </html>"));
   end fullRobot;
 
-  
+
 
   annotation (
     Documentation(info="<html>

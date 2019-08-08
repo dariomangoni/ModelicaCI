@@ -1,5 +1,6 @@
 within ModelicaCI.Mechanics.MultiBody.Examples.Elementary;
 model Pendulum "Simple pendulum with one revolute joint and one body"
+  extends ModelicaCI.Interfaces.ExamplesOutput;
   extends Modelica.Icons.Example;
   inner Modelica.Mechanics.MultiBody.World world(gravityType=Modelica.Mechanics.MultiBody.Types.GravityTypes.
         UniformGravity) annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
@@ -12,6 +13,7 @@ model Pendulum "Simple pendulum with one revolute joint and one body"
   Modelica.Mechanics.MultiBody.Parts.Body body(m=1.0, r_CM={0.5,0,0})
     annotation (Placement(transformation(extent={{20,-10},{40,10}})));
 equation
+  Modelica.Math.Vectors.norm(body.frame_a.R.w) = outVal;
   connect(world.frame_b, rev.frame_a)
     annotation (Line(
       points={{-40,0},{-20,0}},
