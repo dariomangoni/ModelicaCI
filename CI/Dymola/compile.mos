@@ -63,9 +63,10 @@ experimentNum = size(experimentNameList,1);
 finalValues = fill({99999.999}, experimentNum);
 htmlString := "<!DOCTYPE html>
 <html>
+<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 <head>
   <style>
-    body { font-family: Droid Serif,serif; font-size: 16px; line-height: 24px; width: 800px; margin: 24px auto }
+    body { font-family: Droid Serif,serif; font-size: 16px; line-height: 24px; max-width: 960px; margin: 0 auto }
     p, dt, pre, blockquote, ol, ul, table, hr { margin-top: 24px; margin-bottom: 0 }
     img { margin-top: 24px }
     img.icon, embed.icon { float: right; margin: 0 0 24px 24px; border: 0 }
@@ -73,17 +74,22 @@ htmlString := "<!DOCTYPE html>
     h1 { font-size: 26px; line-height: 26px; margin: 18px 0 0 0 }h2 { font-size: 21px; line-height: 24px; margin: 26px 0 -2px 0 }h3 { font-size: 18px; line-height: 24px; margin: 27px 0 -3px 0 }h4 { font-size: 16px; line-height: 24px; margin: 28px 0 -4px 0; font-style: italic }h1 .subtitle, h2 .subtitle { font-size: 16px; font-style: italic }
     h1 br, h2 br { margin-bottom: 10px }
     p.interface { background-color: #EEE; padding: 20px; border: 1px solid #CCE; border-radius: 14px }
-    code, pre, p.interface { font-family: Droid Sans Mono,monospace; font-size: 14px; line-height: 20px }
+    code, pre, p.interface { font-family: Droid Sans Mono,monospace; font-size: 16px; line-height: 20px }
     li, dd, li p, dd p, li dt, dd dt, li pre, dd pre, li blockquote, dd blockquote, li table, dd table { margin-top: 11px; margin-bottom: 11px }
     dt + dt, dd, ul ul { margin-top: 0 }
     blockquote pre, blockquote blockquote { margin-top: 0; margin-bottom: 0 }
     ul ul li { margin-top:5px; margin-bottom:6px }
-    td, th { vertical-align: center; font-size: 14px; line-height: 20px }
-    td.center, th.center { text-align: center; vertical-align: center; font-size: 14px; line-height: 20px }
+    td, th { vertical-align: center; line-height: 20px }
+    td.center, th.center { text-align: center; vertical-align: center; line-height: 20px }
     th { background-color: #EEE }
     td p, th p { margin-top: 10px }
     td code, th code { font-size: 13px }
     hr { border: 0; border-bottom: 1px dotted darkred; clear: right }
+
+    /* Custom CSS */
+    .ReportTable { font-size: 14px; }
+    .ReportTable tr:nth-child(odd){ background: #b8d1f3; }
+    .ReportTable tr:nth-child(even){ background: #dae5f4; }
   </style>
     
 </head>
@@ -109,7 +115,7 @@ htmlString := htmlString + "\n</table>";
 
 // Metrics
 htmlString := htmlString + "\n<h2>Metrics</h2>";
-htmlString := htmlString + "\n<table>";
+htmlString := htmlString + "\n<table class=\"ReportTable\">";
 htmlString := htmlString + "\n  <tr><th>Experiment</th><th>Simulation Time [s]</th><th>Total Time [s]</th><th>Output</th></tr>";
 colorString := "";
 for expIndex in 1:experimentNum loop
