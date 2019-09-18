@@ -19,5 +19,9 @@ jobs:
     - name: Perform metric tests
       run: |
         echo Current dir is: $(pwd)
-        omc $(pwd)/CI/OpenModelica/compile.mos
-
+        echo Directory content is:
+        ls
+        echo OpenModelica version is:
+        omc --version
+        echo Running metrics tests:
+        sudo omc $(pwd)/CI/OpenModelica/compile.mos
