@@ -18,6 +18,6 @@ jobs:
         sudo apt install openmodelica
     - name: Perform metric tests
       run: |
-        echo $pwd
-        omc $pwd/CI/OpenModelica/compile.mos
+        echo Current dir is: $(pwd)
+        omc $(pwd)/CI/OpenModelica/compile.mos
 
