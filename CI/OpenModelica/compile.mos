@@ -4,51 +4,51 @@ tempWorkingDirectory := "../ModelicaCI_build/OpenModelica";
 
 libraryLocation := "package.mo";
 
-experimentNameList := {"ModelicaCI.Mechanics.MultiBody.Examples.Constraints.PrismaticConstraint",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Constraints.RevoluteConstraint",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Constraints.SphericalConstraint",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Constraints.UniversalConstraint",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.DoublePendulum",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.DoublePendulumInitTip",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.ForceAndTorque",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.FreeBody",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.HeatLosses",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.InitSpringConstant",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.LineForceWithTwoMasses",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.Pendulum",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.PendulumWithSpringDamper",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.PointGravity",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.PointGravityWithPointMasses",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.PointGravityWithPointMasses2",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.RollingWheel",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.RollingWheelSetDriving",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.RollingWheelSetPulling",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.SpringDamperSystem",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.SpringMassSystem",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.SpringWithMass",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.Surfaces",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.ThreeSprings",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.UserDefinedGravityField",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Loops.Engine1a",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Loops.Engine1b",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Loops.Engine1b_analytic",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Loops.EngineV6",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Loops.EngineV6_analytic",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Loops.Fourbar1",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Loops.Fourbar2",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Loops.Fourbar_analytic",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Loops.PlanarFourbar",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Loops.PlanarLoops_analytic",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Rotational3DEffects.ActuatedDrive",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Rotational3DEffects.BevelGear1D",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Rotational3DEffects.GearConstraint",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Rotational3DEffects.GyroscopicEffects",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Rotational3DEffects.MovingActuatedDrive",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Systems.RobotR3.fullRobot",
-  "ModelicaCI.Mechanics.MultiBody.Examples.Systems.RobotR3.oneAxis"};
+// experimentNameList := {"ModelicaCI.Mechanics.MultiBody.Examples.Constraints.PrismaticConstraint",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Constraints.RevoluteConstraint",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Constraints.SphericalConstraint",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Constraints.UniversalConstraint",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.DoublePendulum",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.DoublePendulumInitTip",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.ForceAndTorque",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.FreeBody",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.HeatLosses",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.InitSpringConstant",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.LineForceWithTwoMasses",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.Pendulum",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.PendulumWithSpringDamper",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.PointGravity",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.PointGravityWithPointMasses",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.PointGravityWithPointMasses2",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.RollingWheel",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.RollingWheelSetDriving",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.RollingWheelSetPulling",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.SpringDamperSystem",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.SpringMassSystem",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.SpringWithMass",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.Surfaces",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.ThreeSprings",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.UserDefinedGravityField",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Loops.Engine1a",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Loops.Engine1b",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Loops.Engine1b_analytic",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Loops.EngineV6",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Loops.EngineV6_analytic",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Loops.Fourbar1",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Loops.Fourbar2",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Loops.Fourbar_analytic",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Loops.PlanarFourbar",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Loops.PlanarLoops_analytic",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Rotational3DEffects.ActuatedDrive",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Rotational3DEffects.BevelGear1D",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Rotational3DEffects.GearConstraint",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Rotational3DEffects.GyroscopicEffects",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Rotational3DEffects.MovingActuatedDrive",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Systems.RobotR3.fullRobot",
+//   "ModelicaCI.Mechanics.MultiBody.Examples.Systems.RobotR3.oneAxis"};
 
-// experimentNameList := {"ModelicaCI.Mechanics.MultiBody.Examples.Elementary.FreeBody",
-//   "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.ForceAndTorque"};
+experimentNameList := {"ModelicaCI.Mechanics.MultiBody.Examples.Elementary.FreeBody",
+  "ModelicaCI.Mechanics.MultiBody.Examples.Elementary.ForceAndTorque"};
 
 // Load Modelica Continuous Integration Library
 loadModel(Modelica);
@@ -105,16 +105,16 @@ htmlString := "<!DOCTYPE html>
 htmlString := htmlString + "\n<h2>Compiler Setup</h2>";
 htmlString := htmlString + "\n<table>";
 htmlString := htmlString + "\n
-  <tr><td>Compiler</td><td class=\"center\">"+getVersion()+"</td></tr>";
+  <tr><td>Compiler</td><td align=\"right\">"+getVersion()+"</td></tr>";
 htmlString := htmlString + "\n</table>";
 
 // Simulation Setup
 htmlString := htmlString + "\n<h2>Simulation Setup</h2>";
 htmlString := htmlString + "\n<table>";
 htmlString := htmlString + "\n
-  <tr><td>End Time</td><td class=\"center\">"+String(simTimeEnd)+"</td></tr>
-  <tr><td>Timestep</td><td class=\"center\">"+String(simTimestep)+"</td></tr>
-  <tr><td>Tolerance</td><td class=\"center\">"+String(simTolerance)+"</td></tr>";
+  <tr><td>End Time</td><td align=\"right\">"+String(simTimeEnd)+"s</td></tr>
+  <tr><td>Timestep</td><td align=\"right\">"+String(simTimestep)+"s</td></tr>
+  <tr><td>Tolerance</td><td align=\"right\">"+String(simTolerance)+"</td></tr>";
 htmlString := htmlString + "\n</table>";
 
 // Metrics
