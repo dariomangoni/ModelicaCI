@@ -25,3 +25,7 @@ jobs:
         omc --version
         echo Running metrics tests:
         sudo omc $(pwd)/CI/OpenModelica/compile.mos
+    - uses: actions/download-artifact@master
+      with:
+        name: Metric test report
+        path: ../ModelicaCI_build/OpenModelica/report.html
