@@ -59,8 +59,9 @@ simTimeEnd := 10.0;
 simTimestep := 1e-2;
 simTolerance := 1e-8;
 
-system("rd /s /q \""+tempWorkingDirectory+"\"");
-system("mkdir \""+tempWorkingDirectory+"\"");
+remove(tempWorkingDirectory);
+mkdir(tempWorkingDirectory);
+tempWorkingDirectory := realpath(tempWorkingDirectory);
 experimentNum := size(experimentNameList,1);
 results := fill(false, experimentNum);
 finalValues := fill(99999.999, experimentNum);
@@ -124,7 +125,7 @@ colorString := "";
 for expIndex in 1:experimentNum loop
   experimentName := experimentNameList[expIndex];
   tempExperimentWorkingDir := tempWorkingDirectory+"/"+experimentName;
-  system("mkdir \""+tempExperimentWorkingDir+"\"");
+  mkdir(tempExperimentWorkingDir);
   cd(tempExperimentWorkingDir);
   experimentTypeName := searchClassNames(experimentName);
   simRes := simulate(experimentTypeName[1],
@@ -152,6 +153,7 @@ for expIndex in 1:experimentNum loop
 end for;
 htmlString := htmlString + "\n</table>";
 htmlString := htmlString + "\n</body>\n</html>";
+
 cd(tempWorkingDirectory);
 Modelica.Utilities.Streams.print(htmlString, "report.html");
 
