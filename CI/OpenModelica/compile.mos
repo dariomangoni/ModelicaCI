@@ -1,8 +1,8 @@
 echo(false);
 
-tempWorkingDirectory := "D:/ActivateLibraries/ModelicaCode/ModelicaCI_build/OpenModelica";
+tempWorkingDirectory := "../ModelicaCI_build/OpenModelica";
 
-libraryLocation := "D:/ActivateLibraries/ModelicaCode/ModelicaCI/package.mo";
+libraryLocation := "package.mo";
 
 experimentNameList := {"ModelicaCI.Mechanics.MultiBody.Examples.Constraints.PrismaticConstraint",
   "ModelicaCI.Mechanics.MultiBody.Examples.Constraints.RevoluteConstraint",
